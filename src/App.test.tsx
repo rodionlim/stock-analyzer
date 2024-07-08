@@ -1,9 +1,12 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { act, render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test('navigates to Stock Screener page when "Get Started" is clicked', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const getStartedButton = screen.getByText(/Get Started/i);
+  act(() => {
+    getStartedButton.click();
+  });
+  expect(screen.getByText(/Stock Analyzer Chart/i)).toBeInTheDocument();
 });

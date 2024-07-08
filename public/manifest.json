@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Stock Analyzer",
+  "name": "Analyze current and historical prices of stocks",
   "icons": [
     {
       "src": "favicon.ico",

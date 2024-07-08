@@ -1,0 +1,17 @@
+.stock-analyzer {
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.stock-analyzer h1 {
+  color: #34495e;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.stock-analyzer p {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
