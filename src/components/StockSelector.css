@@ -1,0 +1,20 @@
+.stock-selector-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2px;
+  justify-content: center;
+}
+
+.stock-selector-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.stock-selector-remove-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 5px;
+}

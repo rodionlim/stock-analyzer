@@ -1,6 +1,14 @@
+input,
+select,
+button {
+  margin: 10px;
+  padding: 5px;
+}
+
 .stock-analyzer {
   margin: 2rem auto;
   max-width: 800px;
+  text-align: center;
 }
 
 .stock-analyzer h1 {
