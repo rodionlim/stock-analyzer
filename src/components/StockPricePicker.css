@@ -1,0 +1,17 @@
+.stock-price-type-picker {
+  display: flex;
+  justify-content: center;
+}
+
+.stock-price-type-picker button {
+  border: none;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.stock-price-type-option.selected,
+button {
+  background-color: lightgray; /* Change to whatever color you prefer */
+}

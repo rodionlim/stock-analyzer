@@ -22,7 +22,9 @@ const StockSelector: React.FC<StockSelectorProps> = ({
       return;
     }
     if (selectedStocks.includes(stockInput.toUpperCase())) {
-      toast.warn("Stock has already been added to charts");
+      toast.warn(
+        `${stockInput.toUpperCase()} has already been added to charts`
+      );
       return;
     }
     if (stockInput) {

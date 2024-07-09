@@ -75,7 +75,7 @@ describe("StockSelector", () => {
 
     expect(onStockChange).not.toHaveBeenCalled();
     expect(
-      screen.getByText("Stock has already been added to charts")
+      screen.getByText(`AAPL has already been added to charts`)
     ).toBeInTheDocument();
   });
 

@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import StockAnalyzer from "./pages/StockAnalyzer";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const App: React.FC = () => {
   return (
     <Router>

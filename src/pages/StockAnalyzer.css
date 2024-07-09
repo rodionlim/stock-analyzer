@@ -23,3 +23,7 @@ button {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
+
+.stock-chart {
+  margin-top: 5px;
+}

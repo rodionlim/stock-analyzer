@@ -1,14 +1,7 @@
 # Stock Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Tests
-
-In general, tests should cover the following aspects:
-
-- If a component renders with or without props
-- How a component renders with state changes
-- How a component reacts to user interactions
+To facilitate discretionary management, fund managers are often interested in not only looking at
+prices of stocks today but what they have been previously to gain further insight into companies.
 
 ## Available Scripts
 
@@ -23,6 +16,12 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ### `yarn test`
+
+In general, tests should cover the following aspects:
+
+- If a component renders with or without props
+- How a component renders with state changes
+- How a component reacts to user interactions
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
