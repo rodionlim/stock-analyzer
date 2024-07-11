@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:cov": "react-scripts test --coverage --watchAll",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "zip": "mkdir -p ./build && zip build/rodion-stock-analyzer.zip -r . -x \"./.git\" -x \"./.vscode\" -x \"./node_modules/*\" -x \"./coverage\""
   },
   "eslintConfig": {
     "extends": [
