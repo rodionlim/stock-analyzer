@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { act } from "react";
 import StockAnalyzer from "./StockAnalyzer";
 
 test('navigates to Stock Screener page when "Get Started" is clicked', async () => {

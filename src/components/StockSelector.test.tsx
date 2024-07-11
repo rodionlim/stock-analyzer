@@ -9,7 +9,7 @@ describe("StockSelector", () => {
   it("should render input and add button", () => {
     render(
       <>
-        <StockSelector selectedStocks={[]} onStockChange={() => {}} />
+        <StockSelector selectedStocks={[]} setSelectedStocks={() => {}} />
         <ToastContainer />
       </>
     );
@@ -20,24 +20,29 @@ describe("StockSelector", () => {
   });
 
   it("should add a stock when add button is clicked", () => {
-    const onStockChange = jest.fn();
-    render(<StockSelector selectedStocks={[]} onStockChange={onStockChange} />);
+    const setSelectedStocks = jest.fn();
+    render(
+      <StockSelector
+        selectedStocks={[]}
+        setSelectedStocks={setSelectedStocks}
+      />
+    );
 
     fireEvent.change(screen.getByPlaceholderText("Enter stock symbol"), {
       target: { value: "AAPL" },
     });
     fireEvent.click(screen.getByText("Add Stock"));
 
-    expect(onStockChange).toHaveBeenCalledWith(["AAPL"]);
+    expect(setSelectedStocks).toHaveBeenCalledWith(["AAPL"]);
   });
 
-  it("should not add more than 3 stocks and display a toast notification", () => {
-    const onStockChange = jest.fn();
+  it("should not add more than 3 stocks and display a toast notification", async () => {
+    const setSelectedStocks = jest.fn();
     render(
       <>
         <StockSelector
           selectedStocks={["AAPL", "GOOGL", "AMZN"]}
-          onStockChange={onStockChange}
+          setSelectedStocks={setSelectedStocks}
         />
         <ToastContainer />
       </>
@@ -48,21 +53,21 @@ describe("StockSelector", () => {
     });
     fireEvent.click(screen.getByText("Add Stock"));
 
-    expect(onStockChange).not.toHaveBeenCalled();
+    expect(setSelectedStocks).not.toHaveBeenCalled();
     expect(
-      screen.getByText(
+      await screen.findByText(
         "Maximum number of stocks to be added to chart is 3. Please remove before adding again."
       )
     ).toBeInTheDocument();
   });
 
-  it("should not add duplicate stocks", () => {
-    const onStockChange = jest.fn();
+  it("should not add duplicate stocks", async () => {
+    const setSelectedStocks = jest.fn();
     render(
       <>
         <StockSelector
           selectedStocks={["AAPL"]}
-          onStockChange={onStockChange}
+          setSelectedStocks={setSelectedStocks}
         />
         <ToastContainer />
       </>
@@ -73,19 +78,19 @@ describe("StockSelector", () => {
     });
     fireEvent.click(screen.getByText("Add Stock"));
 
-    expect(onStockChange).not.toHaveBeenCalled();
+    expect(setSelectedStocks).not.toHaveBeenCalled();
     expect(
-      screen.getByText(`AAPL has already been added to charts`)
+      await screen.findByText(`AAPL has already been added to charts`)
     ).toBeInTheDocument();
   });
 
   it("should remove a stock when remove button is clicked", () => {
-    const onStockChange = jest.fn();
+    const setSelectedStocks = jest.fn();
     render(
       <>
         <StockSelector
           selectedStocks={["AAPL"]}
-          onStockChange={onStockChange}
+          setSelectedStocks={setSelectedStocks}
         />
         <ToastContainer />
       </>
@@ -93,6 +98,6 @@ describe("StockSelector", () => {
 
     fireEvent.click(screen.getByText("❌"));
 
-    expect(onStockChange).toHaveBeenCalledWith([]);
+    expect(setSelectedStocks).toHaveBeenCalledWith([]);
   });
 });

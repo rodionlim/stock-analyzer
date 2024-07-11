@@ -3,7 +3,7 @@ import highchartsAccessibility from "highcharts/modules/accessibility";
 import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 
-import { PriceTypes, StockDataRecord } from "../types/common_types";
+import { PriceTypes, StocksDataRecords } from "../types/common_types";
 
 // init the module
 if (typeof window !== `undefined`) {
@@ -11,19 +11,19 @@ if (typeof window !== `undefined`) {
 }
 
 export interface StockChartProps {
-  stockData: StockDataRecord;
+  stocksData: StocksDataRecords;
   selectedPriceType: PriceTypes;
 }
 
 const StockChart: React.FC<StockChartProps> = ({
-  stockData,
+  stocksData,
   selectedPriceType,
 }) => {
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
 
-  const seriesData = Object.keys(stockData).map((symbol) => ({
+  const seriesData = Object.keys(stocksData).map((symbol) => ({
     name: symbol,
-    data: stockData[symbol].map((data) => [
+    data: stocksData[symbol].map((data) => [
       new Date(data.date).getTime(),
       data[selectedPriceType],
     ]) as [number, number][],
@@ -34,13 +34,16 @@ const StockChart: React.FC<StockChartProps> = ({
     chart: {
       backgroundColor: "rgba(0, 0, 0, 0)", // Transparent background
     },
+    legend: {
+      enabled: true,
+    },
     rangeSelector: {
       selected: 1,
       inputEnabled: true, // enable date picker
       verticalAlign: "bottom",
       x: 0,
       y: 0,
-      floating: true,
+      floating: false,
     },
     title: {
       text: "Stock Prices",
@@ -62,7 +65,7 @@ const StockChart: React.FC<StockChartProps> = ({
         series: seriesData as Highcharts.SeriesOptionsType[],
       });
     }
-  }, [stockData, selectedPriceType]);
+  }, [seriesData, stocksData, selectedPriceType]);
 
   return (
     <HighchartsReact

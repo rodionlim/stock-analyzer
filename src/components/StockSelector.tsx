@@ -5,12 +5,12 @@ import "./StockSelector.css";
 
 interface StockSelectorProps {
   selectedStocks: string[];
-  onStockChange: (stocks: string[]) => void;
+  setSelectedStocks: (stocks: string[]) => void;
 }
 
 const StockSelector: React.FC<StockSelectorProps> = ({
   selectedStocks,
-  onStockChange,
+  setSelectedStocks,
 }) => {
   const [stockInput, setStockInput] = useState("");
 
@@ -28,13 +28,13 @@ const StockSelector: React.FC<StockSelectorProps> = ({
       return;
     }
     if (stockInput) {
-      onStockChange([...selectedStocks, stockInput.toUpperCase()]);
+      setSelectedStocks([...selectedStocks, stockInput.toUpperCase()]);
       setStockInput("");
     }
   };
 
   const handleRemoveStock = (stock: string) => {
-    onStockChange(selectedStocks.filter((s) => s !== stock));
+    setSelectedStocks(selectedStocks.filter((s) => s !== stock));
   };
 
   return (

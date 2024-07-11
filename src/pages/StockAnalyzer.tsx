@@ -3,36 +3,34 @@ import React, { useState } from "react";
 import StockChart from "../components/StockChart";
 import StockPricePicker from "../components/StockPricePicker";
 import StockSelector from "../components/StockSelector";
-import { PriceTypes, StockDataRecord } from "../types/common_types";
+import { PriceTypes } from "../types/common_types";
 
 import "./StockAnalyzer.css";
+import useFetchStocksData from "../hooks/useFetchStocksData";
 
 const StockAnalyzer: React.FC = () => {
   const [selectedPriceType, setSelectedPriceType] =
-    useState<PriceTypes>("Close");
-  const [selectedStocks, setSelectedStocks] = useState<string[]>([]);
-  const [stockData, setStockData] = useState<StockDataRecord>({});
+    useState<PriceTypes>("Close"); // user selects type of price to chart, OHLC
+  const [selectedStocks, setSelectedStocks] = useState<string[]>([]); // user selects stocks they want to chart
 
-  const handlePriceTypeSelect = (type: PriceTypes) => {
-    setSelectedPriceType(type);
-  };
+  const stocksData = useFetchStocksData(selectedStocks);
 
   return (
     <div className="stock-analyzer">
       <h1>Stock Analyzer Chart</h1>
       <StockSelector
         selectedStocks={selectedStocks}
-        onStockChange={setSelectedStocks}
+        setSelectedStocks={setSelectedStocks}
       />
       <div className="stock-price-type-picker">
         <StockPricePicker
           selectedPriceType={selectedPriceType}
-          handlePriceTypeSelect={handlePriceTypeSelect}
+          setSelectedPriceType={setSelectedPriceType}
         />
       </div>
       <div className="stock-chart">
         <StockChart
-          stockData={stockData}
+          stocksData={stocksData}
           selectedPriceType={selectedPriceType}
         />
       </div>

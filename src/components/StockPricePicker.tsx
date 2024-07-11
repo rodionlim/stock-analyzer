@@ -6,13 +6,17 @@ import "./StockPricePicker.css";
 
 interface StockPricePickerProps {
   selectedPriceType: PriceTypes;
-  handlePriceTypeSelect: (priceType: PriceTypes) => void;
+  setSelectedPriceType: React.Dispatch<React.SetStateAction<PriceTypes>>;
 }
 
 const StockPricePicker: React.FC<StockPricePickerProps> = ({
   selectedPriceType,
-  handlePriceTypeSelect,
+  setSelectedPriceType,
 }) => {
+  const handlePriceTypeSelect = (type: PriceTypes) => {
+    setSelectedPriceType(type);
+  };
+
   return (
     <>
       <button
