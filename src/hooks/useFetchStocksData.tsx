@@ -6,6 +6,7 @@ import { fetchStocksData } from "../utils/fetchStocksData";
 
 const useFetchStocksData = (
   selectedStocks: string[],
+  setSelectedStocks: React.Dispatch<React.SetStateAction<string[]>>,
   start: number,
   end: number,
   multiplier: number = 1,
@@ -15,6 +16,7 @@ const useFetchStocksData = (
   const cacheStock = async () => {
     if (selectedStocks.length === 0) return;
 
+    const prevSelectedStock = Object.keys(stockData);
     try {
       const data = await fetchStocksData(
         selectedStocks,
@@ -26,6 +28,7 @@ const useFetchStocksData = (
       );
       setStockData(data);
     } catch (err) {
+      setSelectedStocks(prevSelectedStock); // if an error occurs, we remove it from the selection altogether
       toast.error((err as Error).message);
     }
   };

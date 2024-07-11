@@ -5,8 +5,9 @@ import StockPricePicker from "../components/StockPricePicker";
 import StockSelector from "../components/StockSelector";
 import { PriceTypes } from "../types/common_types";
 
-import "./StockAnalyzer.css";
 import useFetchStocksData from "../hooks/useFetchStocksData";
+
+import "./StockAnalyzer.css";
 
 const StockAnalyzer: React.FC = () => {
   const [selectedPriceType, setSelectedPriceType] =
@@ -20,12 +21,18 @@ const StockAnalyzer: React.FC = () => {
   const dt = new Date();
   const max = dt.getTime();
   const min = dt.setFullYear(dt.getFullYear() - 2);
-  const [dateRange, setDateRange] = useState<{
-    min: number;
-    max: number;
-  }>({ min, max });
 
-  const stocksData = useFetchStocksData(selectedStocks, min, max);
+  const [dateRange, setDateRange] = useState({
+    min,
+    max,
+  });
+
+  const stocksData = useFetchStocksData(
+    selectedStocks,
+    setSelectedStocks,
+    dateRange.min,
+    dateRange.max
+  );
 
   return (
     <div className="stock-analyzer">
@@ -34,20 +41,24 @@ const StockAnalyzer: React.FC = () => {
         selectedStocks={selectedStocks}
         setSelectedStocks={setSelectedStocks}
       />
-      <div className="stock-price-type-picker">
-        <StockPricePicker
-          selectedPriceType={selectedPriceType}
-          setSelectedPriceType={setSelectedPriceType}
-        />
-      </div>
-      <div className="stock-chart">
-        <StockChart
-          stocksData={stocksData}
-          selectedPriceType={selectedPriceType}
-          min={dateRange.min}
-          max={dateRange.max}
-        />
-      </div>
+      {selectedStocks.length > 0 && (
+        <>
+          <div className="stock-price-type-picker">
+            <StockPricePicker
+              selectedPriceType={selectedPriceType}
+              setSelectedPriceType={setSelectedPriceType}
+            />
+          </div>
+
+          <div className="stock-chart">
+            <StockChart
+              stocksData={stocksData}
+              selectedStocks={selectedStocks}
+              selectedPriceType={selectedPriceType}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };

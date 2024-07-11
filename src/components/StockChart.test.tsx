@@ -11,9 +11,18 @@ describe("StockChart Component", () => {
   it("renders without crashing", () => {
     const mockProps: StockChartProps = {
       stocksData: mockStocksData,
+      selectedStocks: Object.keys(mockStocksData),
       selectedPriceType: "Close",
-      min: 100000,
-      max: 200000,
+    };
+    render(<StockChart {...mockProps} />);
+  });
+
+  it("removing single stock from selectedStocks should remove the points from the chart", () => {
+    // TODO(rl): this test isn't testing properly, to switch to enzyme to test the behaviour
+    const mockProps: StockChartProps = {
+      stocksData: mockStocksData,
+      selectedStocks: [],
+      selectedPriceType: "Close",
     };
     render(<StockChart {...mockProps} />);
   });
