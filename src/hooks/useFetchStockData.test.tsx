@@ -22,7 +22,7 @@ describe("useFetchStocksData", () => {
       ],
     });
     const { result, waitForNextUpdate } = renderHook(() =>
-      useFetchStocksData(["AAPL", "MSFT"])
+      useFetchStocksData(["AAPL", "MSFT"], 100000, 200000)
     );
     await waitForNextUpdate();
     expect(result.current).toEqual({
@@ -43,7 +43,7 @@ it("handles error case properly when upstream API has issues", async () => {
     new Error("API limit breached")
   );
   const { result, waitFor } = renderHook(() =>
-    useFetchStocksData(["AAPL", "MSFT"])
+    useFetchStocksData(["AAPL", "MSFT"], 100000, 200000)
   );
   expect(result.current).toMatchObject({});
 

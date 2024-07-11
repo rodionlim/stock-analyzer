@@ -13,14 +13,18 @@ if (typeof window !== `undefined`) {
 export interface StockChartProps {
   stocksData: StocksDataRecords;
   selectedPriceType: PriceTypes;
+  min: number;
+  max: number;
 }
 
+// TODO(rl): add a set dateRange over here
 const StockChart: React.FC<StockChartProps> = ({
   stocksData,
   selectedPriceType,
+  min,
+  max,
 }) => {
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
-
   const seriesData = Object.keys(stocksData).map((symbol) => ({
     name: symbol,
     data: stocksData[symbol].map((data) => [
@@ -66,6 +70,27 @@ const StockChart: React.FC<StockChartProps> = ({
       });
     }
   }, [seriesData, stocksData, selectedPriceType]);
+
+  useEffect(() => {
+    if (chartComponentRef.current) {
+      const chart = chartComponentRef.current.chart;
+      const xAxis = chart.xAxis[0];
+      const selectedMin = xAxis.getExtremes().min;
+      const selectedMax = xAxis.getExtremes().max;
+
+      if (selectedMin && selectedMin < min) {
+        // TODO(rl): do something (extend the actual min used for fetching stock data)
+        console.log("user selected a range that is not yet cached");
+        // setDateRange({ selectedMin, max });
+      }
+
+      if (selectedMax && selectedMax > max) {
+        // TODO(rl): do something (extend the actual min used for fetching stock data)
+        console.log("user selected a range that is not yet cached");
+        // setDateRange({ min, selectedMax });
+      }
+    }
+  }, [stocksData, selectedPriceType, min, max]);
 
   return (
     <HighchartsReact

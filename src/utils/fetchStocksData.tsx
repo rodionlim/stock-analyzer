@@ -19,7 +19,7 @@ export const fetchStocksData = async (
         if (!cache[symbol]) {
           const response = await axios.get(
             `https://api.polygon.io/v2/aggs/ticker/${symbol}/range/${multiplier}/${interval}/${start}/${end}?apiKey=${process.env.REACT_APP_POLYGON_API_KEY}`,
-            { timeout: 2000 }
+            { timeout: 3000 }
           );
           console.log(
             `Fetch [${symbol}]. Received response from polygon`,

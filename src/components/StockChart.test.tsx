@@ -12,9 +12,11 @@ describe("StockChart Component", () => {
     const mockProps: StockChartProps = {
       stocksData: mockStocksData,
       selectedPriceType: "Close",
+      min: 100000,
+      max: 200000,
     };
     render(<StockChart {...mockProps} />);
   });
 });
 
-// TODO(rl): find some way to unit test this without using enzyme (enzyme is deprecated and won't work with react 18)
+// TODO(rl): probably should unit test this using enzyme (enzyme is deprecated and won't work with react 18)

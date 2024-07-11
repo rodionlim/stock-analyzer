@@ -12,6 +12,7 @@ export type TimeSpans =
   | "quarter"
   | "year";
 
+// this is currently segregated by symbol, needs to be extended to segregate by timespan-intervals
 export type StocksDataRecords = {
   [symbol: string]: {
     date: string | number;
