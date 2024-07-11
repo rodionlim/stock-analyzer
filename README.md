@@ -9,6 +9,11 @@ Node Version - v18.20.3
 OS - Mac (Should be compatible with windows and linux as well)
 
 Store your polygon API keys in a `.env` file with the following convention - `REACT_APP_POLYGON_API_KEY={YOUR_API_KEY}`
+
+Install dependencies
+
+1. `yarn install`
+
 Start the application with either
 
 1. `yarn start`
@@ -54,3 +59,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
+
+### `yarn zip`
+
+Zip the app up for source code distribution

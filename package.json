@@ -20,11 +20,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "clean": "rm -rf ./build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:cov": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
-    "zip": "mkdir -p ./build && zip build/rodion-stock-analyzer.zip -r . -x \"./.git\" -x \"./.vscode\" -x \"./node_modules/*\" -x \"./coverage\""
+    "zip": "mkdir -p ./build && zip build/rodion-stock-analyzer.zip -r . -x '*.git*' -x '*.env*' -x '*.DS_Store*' -x \"./build/*\" -x \"./.git/*\" -x \"./.vscode/*\" -x \"./node_modules/*\" -x \"./coverage/*\""
   },
   "eslintConfig": {
     "extends": [
