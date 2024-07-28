@@ -40,24 +40,47 @@ const StockChart: React.FC<StockChartProps> = ({
     legend: {
       enabled: true,
     },
+    title: {
+      text: "Stock Analyzer (Prices)",
+    },
+    subtitle: {
+      text: "Series compared by <em>percent</em>",
+    },
     rangeSelector: {
-      selected: 1,
+      selected: 4,
       inputEnabled: true, // enable date picker
       verticalAlign: "bottom",
       x: 0,
       y: 0,
       floating: false,
-    },
-    title: {
-      text: "Stock Prices",
+      allButtonsEnabled: true,
     },
     xAxis: {
       type: "datetime",
     },
     yAxis: {
       title: {
-        text: "Price",
+        text: "Price %",
       },
+      labels: {
+        formatter: (x) => {
+          const val = parseInt(x.value.toString());
+          return (val > 0 ? " + " : "") + val.toString() + "%";
+        },
+      },
+    },
+    plotOptions: {
+      series: {
+        compare: "percent",
+      },
+    },
+    tooltip: {
+      pointFormat:
+        '<span style="color:{series.color}">' +
+        "{series.name}</span>: <b>{point.y}</b> " +
+        "({point.change}%)<br/>",
+      changeDecimals: 2,
+      valueDecimals: 2,
     },
     series: seriesData as Highcharts.SeriesOptionsType[],
   };
