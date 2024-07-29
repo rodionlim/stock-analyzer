@@ -12,7 +12,7 @@ const mockResponse = {
 };
 
 describe("StockAnalyzer", () => {
-  it('navigates to Stock Screener page when "Get Started" is clicked', () => {
+  it("do not display stock picker when no stocks have been added", () => {
     render(<StockAnalyzer />);
     expect(screen.getByText(/Stock Analyzer Chart/i)).toBeInTheDocument();
     expect(screen.queryByText(/Open/i)).not.toBeInTheDocument();
